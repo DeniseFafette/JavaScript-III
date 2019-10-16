@@ -41,7 +41,18 @@
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-/*
+function GameObject(charprofile){
+  this.newCreated = charprofile.createdAt,
+  this.newDimension = charprofile.dimensions,
+  this.newLength = charprofile.length,
+  this.newWidth = charprofile.width,
+  this.newHeight = charprofile.height
+}
+
+GameObject.prototype.dead = function(){
+  return `${this.name} was removed from the game.`
+};
+
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
