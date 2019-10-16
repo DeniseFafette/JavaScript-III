@@ -9,18 +9,51 @@
 * write out a code example of each explanation above
 */
 
-// Principle 1
+// Principle 1 -  code example for Window Binding
 
-// code example for Window Binding
+function celebrate(){
+    console.log(this.pretzel);
+}
+    
+let pretzel = '🥨';
+    
+    celebrate();
 
-// Principle 2
 
-// code example for Implicit Binding
+// Principle 2 -  code example for Implicit Binding
 
-// Principle 3
+let mySoul = {
+      country: 'France',
+      city: 'Paris',
+      site: '🎠'
+      travel: function(){
+        console.log(this.site);
+      }
+    }
 
-// code example for New Binding
+    mySoul.travel();
 
-// Principle 4
 
-// code example for Explicit Binding
+// Principle 3 - code example for New Binding
+
+function Role(cohort){
+    this.role = cohort;
+  }
+  
+  let buildWeekRoles = new Role('UX Engineer');
+  
+  console.log(`My role is ${buildWeekRoles.role}`);
+
+// Principle 4 - code example for Explicit Binding
+
+function buildWeek(){
+    console.log(`${this.name} is the ${this.role} for the ${this.product} project!`);
+  }
+  
+  const teamate ={
+    name: 'Denise',
+    role: 'Founder',
+    project: 'Firefly'
+  }
+  
+  buildWeek.call(teamate);
