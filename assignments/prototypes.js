@@ -45,14 +45,14 @@
 //createdAt, name, dimensions
 //destroy() returns: `${this.name} was removed from the game.`
 
-function GameObject(character){
+function GameObject(stats){
   this.createdAt = character.createdAt;
   this.name = character.name;
   this.dimensions = character.dimensions;
-  this.destroy = character.destroy;
+  //this.destroy = character.destroy;
 }
 
-GameObject.prototype.dead = function(){
+GameObject.prototype.destroy = function(){
   return `${this.name} was removed from the game.`
 };
 
@@ -62,14 +62,16 @@ GameObject.prototype.dead = function(){
 //inherit destroy() from GameObject's prototype
 
 function CharacterStats(stats){
+  GameObject.call(this, stats)
   this.healthPoints = stats.healthPoints;
-  GameObject.call(this, character)
+  
 }
+CharacterStats.prototype = Object.create(GameObject.prototype)
 CharacterStats.prototype.damage = function(){
   return `${this.name} took damage.`
 };
 
-CharacterStats.prototype = Object.create(GameObject.prototype)
+
 
 // Humanoid
 //team, weapons, language
@@ -78,16 +80,15 @@ CharacterStats.prototype = Object.create(GameObject.prototype)
 //should inherit takeDamage() from CharacterStats
 
 function Humanoid(humanish){
+  CharacterStats.call(this, humanish)
   this.team = humanish.team;
   this.weapons = humanish.weapons;
   this.language = humanish.language;
 }
-
+Humanoid.prototype = Object.create(CharacterStats.prototype)
 Humanoid.prototype.greet = function(){
   return `${this.name} offers greeting in ${this.language}.`
-
-Humanoid.prototype = Object.create(CharacterStats.prototype)
-Humanoid.prototype = Object.create(GameObject.prototype)
+}
 
 
   const mage = new Humanoid({
